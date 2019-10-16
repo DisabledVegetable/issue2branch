@@ -2,6 +2,50 @@
  * Place your custom CSS styles here.
  **/
 
+.i2b-button-container {
+  position: relative;
+}
+
+.inactive:hover > .i2b-popover {
+  display: block;
+  opacity: 1;
+}
+
+.i2b-popover {
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  transition: all 0.2s ease-out;
+  opacity: 0;
+  display: none;
+}
+
 .create-branch {
-  background-color: red !important;
+  border: 1px solid #729099;
+  background-color: #729099;
+  border-radius: 4px;
+
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.2s ease-out;
+}
+
+.create-branch:hover {
+  cursor: help;
+}
+
+.create-branch:hover {
+  cursor: help;
+}
+
+.activated {
+  background-color: #08b2e3;
+  border: 1px solid #08b2e3;
+}
+.activated:hover {
+  background-color: #34c0e8;
+}
+
+.activated:active {
+  background-color: #0792ba;
 }
