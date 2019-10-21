@@ -4,6 +4,7 @@ const readyStateCheckInterval = setInterval(function() {
 
     console.log("page content has been loaded");
     insertButtonInActionBar();
+    window.addEventListener("storage", handleStorageEvent);
   }
 }, 10);
 
@@ -25,4 +26,8 @@ function insertButtonInActionBar() {
 
   header.appendChild(createBranchButton.content.firstChild);
   console.log("button has been created");
+}
+
+function handleStorageEvent(e) {
+  console.log("Storage event =>", e);
 }

@@ -1,17 +1,22 @@
-const init = setInterval(function() {
-  if (document.readyState === "complete") {
-    clearInterval(init);
-    console.log("popup has been loaded");
-    initPopupEvent();
+(() => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", event => {
+      initPopupEvent();
+    });
+    return;
   }
-}, 300);
+
+  return console.warn("Failed to init page listener");
+})();
 
 function initPopupEvent() {
+  console.log(document);
   const button = document.querySelector("#submit");
 
   if (!button) {
     return console.warn("No submit button was found");
   }
+  console.log("popup has been loaded");
   button.addEventListener("click", saveUserToken);
 }
 

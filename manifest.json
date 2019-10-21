@@ -25,6 +25,7 @@
     },
     {
       "matches": ["https://github.com/**/issues/*"],
+      "run_at": "document_start",
       "js": ["src/inject/inject.js", "js/helpers.js"]
     }
   ]
