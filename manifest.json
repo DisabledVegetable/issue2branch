@@ -14,8 +14,7 @@
   },
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
+    "default_title": "page action demo"
   },
   "permissions": ["storage"],
   "content_scripts": [
@@ -26,7 +25,12 @@
     {
       "matches": ["https://github.com/**/issues/*"],
       "run_at": "document_start",
-      "js": ["src/inject/inject.js", "js/helpers.js"]
+      "js": [
+        "src/inject/inject.js",
+        "js/helpers.js",
+        "js/components/form.js",
+        "js/components/button.js"
+      ]
     }
   ]
 }

@@ -6,46 +6,56 @@
   position: relative;
 }
 
-.inactive:hover > .i2b-popover {
-  display: block;
-  opacity: 1;
+.i2b-inactive {
+  border: 1px solid #fe7f2d;
+  background-color: #fe7f2d;
 }
 
-.i2b-popover {
-  position: absolute;
-  top: 30px;
-  text-align: center;
-  transition: all 0.2s ease-out;
-  opacity: 0;
-  display: none;
+.i2b-inactive:hover {
+  background-color: #fe9653;
 }
 
-.create-branch {
-  border: 1px solid #729099;
-  background-color: #729099;
+.i2b-inactive:active {
+  background-color: #d06825;
+}
+
+.i2b-create-branch {
   border-radius: 4px;
-
   color: #fff;
   font-weight: 600;
   transition: all 0.2s ease-out;
 }
 
-.create-branch:hover {
-  cursor: help;
-}
-
-.create-branch:hover {
-  cursor: help;
-}
-
-.activated {
+.i2b-active {
   background-color: #08b2e3;
   border: 1px solid #08b2e3;
 }
-.activated:hover {
+.i2b-active:hover {
   background-color: #34c0e8;
+  cursor: pointer;
 }
 
-.activated:active {
+.i2b-active:active {
   background-color: #0792ba;
+}
+
+/* Form style */
+
+.i2b-form-container {
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  transition: all 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.i2b-hide {
+  display: none;
 }

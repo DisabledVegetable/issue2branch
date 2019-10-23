@@ -1,10 +1,8 @@
 const readyStateCheckInterval = setInterval(function() {
   if (document.readyState === "complete") {
     clearInterval(readyStateCheckInterval);
-
-    console.log("page content has been loaded");
     insertButtonInActionBar();
-    window.addEventListener("storage", handleStorageEvent);
+    initPopover();
   }
 }, 10);
 
@@ -15,19 +13,43 @@ function insertButtonInActionBar() {
     console.warn("Could not find actions header component in DOM tree");
   }
 
-  const buttonTpl = `
-    <div class="i2b-button-container float-right inactive">
-      <span class="i2b-popover">Add your username and token so you can create a branch from issue ! </span>
-      <button class="btn-sm create-branch">Create branch from issue</button>
-    </div>
-  `;
   const createBranchButton = document.createElement("template");
-  createBranchButton.innerHTML = buttonTpl.trim();
-
+  createBranchButton.innerHTML = button.trim();
   header.appendChild(createBranchButton.content.firstChild);
-  console.log("button has been created");
 }
 
-function handleStorageEvent(e) {
-  console.log("Storage event =>", e);
+function initPopover() {
+  // Attach event listener to popup submit button
+  const submitButton = document.querySelector("#i2b-submit");
+  if (!submitButton) {
+    console.warn("Could not find #i2b-submit component in DOM tree");
+  }
+  submitButton.addEventListener("click", saveUserToken);
+}
+
+chrome.storage.onChanged.addListener(e => {
+  enableCreateIssueButton();
+});
+
+// Update button and popover style
+function enableCreateIssueButton() {
+  const i2bButton = document.querySelector(".i2b-create-branch");
+  const i2bPopup = document.querySelector(".i2b-form-container");
+  i2bButton.classList.remove("i2b-inactive");
+  i2bButton.classList.add("i2b-active");
+  i2bPopup.classList.add("i2b-hide");
+
+  const activeCreateBranchButton = document.querySelector(".i2b-active");
+
+  activeCreateBranchButton.addEventListener("click", createBranchFromIssue);
+}
+
+function createBranchFromIssue() {
+  console.log("should create branch from issue here ");
+
+  // Get window location and parse the url on "/" to get the username, repo name and issue ID
+  // Then craft API call to create the issue
+  // Should lock the button after the branch has been created
+  // Maybe we should check on the repo if the branch already exist (to avoid displaying the button)
+  // const reposUrl = window.location;
 }
